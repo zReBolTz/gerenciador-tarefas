@@ -13,10 +13,21 @@ const Tasks = (props) => {
 
   return (
     <div>
-      <ul className="space-y-4 p-6 rounded-md bg-slate-100">
+      <ul
+        className={`${
+          props.tasks.length > 0 && "space-y-4 p-6 rounded-md bg-slate-100"
+        }`}
+      >
         {props.tasks.map((item) => (
           <li key={item.id} className=" rounded flex gap-2 p-2">
-            <button className=" w-full flex p-2">{item.title}</button>
+            <button
+              onClick={() => props.CompletedTaks(item.id)}
+              className={`w-full flex p-2 ${
+                item.isCompleted && "line-through"
+              }`}
+            >
+              {item.title}
+            </button>
             <div className=" flex gap-2 items-center">
               <button
                 onClick={() => props.onDeleteTasks(item.id)}
